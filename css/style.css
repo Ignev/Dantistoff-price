@@ -680,13 +680,16 @@ a {
     right: 5%;
     width: 24px;
     height: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 40%;
+    transform: rotate(180deg) translateY(-50%);
     transition: 0.3s ease;
 }
+.serve-accordion__title-disable{
+    border-radius: 0;
+}
 .serve-accordion__title-disable::after{
-    transform: rotate(180deg) translateY(-50%);
-    top: 40%;
+    transform:  translateY(-50%);
+    top: 50%;
     transition: 0.3s ease;
 }
 .serve-accordion-orange__title::after{
@@ -699,13 +702,13 @@ a {
     right: 5%;
     width: 24px;
     height: 12px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 40%;
+    transform: rotate(180deg) translateY(-50%);
     transition: 0.3s ease;
 }
 .serve-accordion-orange__title-disable::after{
-    transform: rotate(180deg) translateY(-50%);
-    top: 40%;
+    transform:  translateY(-50%);
+    top: 50%;
 }
 
 .serves-accordion-orange__item {
