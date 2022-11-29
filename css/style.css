@@ -1085,4 +1085,7 @@ a {
     right: 10px;
     top: 5px;
   }
+  .serves__accordion{
+    margin-bottom: 20px;
+  }
 }
