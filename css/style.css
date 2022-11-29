@@ -804,6 +804,9 @@ a {
 .hide{
   display: none;
 }
+.serves-accordion-info__tooltip--mobile{
+  display: none;
+}
 
 @media screen and (max-width: 1500px) {
   main {
