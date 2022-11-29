@@ -263,6 +263,7 @@ a {
   padding: 19px 24px;
   border-radius: 20px;
   margin-bottom: 20px;
+  color: #fff;
 }
 .pricing-banner__item:nth-child(2) {
   background-image: url(../img/banner-bg2.png);
@@ -282,6 +283,28 @@ a {
   font-weight: 700;
   position: relative;
   display: inline-block;
+  text-shadow: -5.64402px -5.64402px 23.9871px rgba(255, 255, 255, 0.5);
+}
+
+.pricing-banner__text{
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 15px;
+}
+.pricing-banner-text__substring{
+  position: relative;
+}
+.pricing-banner-text__substring::after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 8px;
+  left: 0;
+  bottom: 0;
+  background-image: url(../img/border-line-purpel.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .pricing-banner-title__substring::after {
@@ -292,6 +315,19 @@ a {
   left: 0;
   bottom: 0;
   background-image: url(../img/border-line-purpel.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.pricing-banner-title-second__substring::after {
+  position: absolute;
+  content: "";
+  width: 103%;
+  height: 7px;
+  left: 0;
+  bottom: 0;
+  background-image: url(../img/border-line-orange.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -321,15 +357,30 @@ a {
   background-repeat: no-repeat;
   background-position: center;
 }
-
+.serves-price__wrapp{
+  flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+}
 .pricing-banner__btn {
   font-weight: 400;
   font-size: 15px;
   line-height: 22px;
   color: #ffffff;
-  background: #fb7e01;
   border-radius: 10px;
   padding: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  transition: 0.3s ease;
+  display: block;
+  text-align: center;
+  font-family: inherit;
+}
+
+.pricing-banner__btn:hover{
+  background: #fb7e01;
+  transition: 0.3s ease;
 }
 
 .banner-sale {
@@ -376,7 +427,7 @@ a {
   left: 0;
   bottom: 0;
 }
-.banner-sale__bnt {
+.banner-sale__btn {
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
@@ -385,6 +436,8 @@ a {
   box-shadow: 0px 4px 11px rgba(251, 126, 1, 0.4);
   border-radius: 12px;
   padding: 13px 40px;
+  cursor: pointer;
+  transition: 0.3s ease;
 }
 
 .serves__search {
@@ -446,14 +499,20 @@ a {
   letter-spacing: -0.02em;
   color: #ffffff;
   position: relative;
+  cursor: pointer;
 }
 
 .serves-accordion__list{
   transition: 1s ease;
-  max-height: 1320px;
   display: flex;
+  max-height: 1400px;
   flex-direction: column;
   overflow: hidden;
+  transition: 1s ease;
+}
+
+.serves-accordion-orange__list{
+  max-height: 2400px;
 }
 
 .serve-accordion-orange__title{
@@ -493,6 +552,7 @@ a {
   display: flex;
   align-items: center;
   flex-direction: row;
+  cursor: pointer;
 }
 
 .serves-accordion-info__more {
@@ -510,7 +570,7 @@ a {
   font-size: 16px;
   line-height: 24px;
   letter-spacing: -0.02em;
-  color: #000000;
+  color: #8993AA;
   border-bottom: 1px dashed #8993aa;
 }
 .serves-accordion-info__img {
@@ -523,19 +583,26 @@ a {
   position: relative;
   cursor: pointer;
 }
-.serves-accordion-info__img:hover {
+
+.serves-accordion-text__info:hover .serves-accordion-info__img {
   background-image: url(../img/info-active.png);
 }
-.serves-accordion-info__img:hover .serves-accordion-info__tooltip {
+.serves-accordion-text__info:hover .serves-accordion-info__pricing{
+  color: #000;
+}
+.serves-accordion-text__info:hover .serves-accordion-info__tooltip {
   display: flex;
   
 }
 .serves-accordion-info__tooltip {
   display: none;
   position: absolute;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #000;
   color: #fff;
-  padding: 10px 26px;
+  padding: 10px 26px 8px 26px;
   font-weight: 300;
   font-size: 14px;
   line-height: 21px;
@@ -562,6 +629,11 @@ a {
   position: relative;
   margin-bottom: 5px;
 }
+.serves-accordion-tooltip__item:last-child {
+  margin-left: 19px;
+  position: relative;
+  margin-bottom: 0px;
+}
 .serves-accordion-tooltip__item::before {
   position: absolute;
   content: "";
@@ -572,6 +644,8 @@ a {
   background-repeat: no-repeat;
   background-position: center;
   left: -19px;
+  top: 40%;
+  transform: translateY(-50%);
 }
 .serves-accordion__price {
   display: flex;
@@ -892,6 +966,13 @@ a {
     align-items: start;
     width: 100%;
   }
+  .banner-sale__btn{
+    width: 100%;
+    font-size: 15px;
+    line-height: 22px;
+    display: block;
+    font-family: inherit;
+  }
   .banner-sale-text__substring {
     text-transform: uppercase;
   }
@@ -911,6 +992,7 @@ a {
     background-size: cover;
     font-size: 20px;
     line-height: 29px;
+
   }
   .serves-accordion__item {
     flex-direction: column;
@@ -941,6 +1023,7 @@ a {
   .serves-price__wrapp{
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     margin-right: 5px;
   }
   .serves-price__first{
@@ -1023,12 +1106,8 @@ a {
     position: relative;
     cursor: pointer;
   }
-  .serves-accordion-info__img:hover {
-    background-image: url(../img/info-active.png);
-  }
   .serves-accordion-info__img:hover .serves-accordion-info__tooltip {
     display: none;
-    
   }
   .serves-accordion-info__tooltip {
     position: absolute;
