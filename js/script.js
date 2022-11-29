@@ -14,7 +14,6 @@ window.addEventListener("DOMContentLoaded", function () {
       ".serves-accordion-info__tooltip--mobile"
     ),
     serverClose = document.querySelectorAll(".serves-accordion-tooltip__close");
-
   const openTooptop = (tooptip) => {
     tooptip.classList.add("serves-accordion-info__tooltip--mobile--active");
   };
@@ -37,30 +36,27 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  //   const search = (input, listSearch, elementsSearch) => {
-  //     let value = input.value.trim();
-  //     if (value !== "") {
-  //       elementsSearch.forEach((element) => {
-  //         listSearch.forEach((listItem) => {
-  //           if (listItem.innerText.search(value) == -1) {
-  //             console.log(listItem.innerText);
-  //             element.classList.add("hide");
-  //           } else {
-  //             element.classList.remove("hide");
-  //           }
-  //         });
-  //       });
-  //     } else {
-  //       elementsSearch.forEach((element) => {
-  //         element.classList.remove("hide");
-  //       });
-  //     }
-  //     searchValue.innerText = value;
-  //   };
+    const search = (input, listSearch, elementsSearch) => {
+      let value = input.value.toLowerCase().trim();
+      if (value !== "") {
+          listSearch.forEach((listItem) => {
+            if (listItem.innerText.toLowerCase().search(value) == -1) {
+                listItem.parentNode.parentNode.classList.add("hide");
+            } else {
+                listItem.parentNode.parentNode.classList.remove("hide");
+            }
+          });
+      } else {
+        listSearch.forEach((listItem) => {
+            listItem.parentNode.parentNode.classList.remove("hide");
+        });
+      }value
+      searchValue.innerText = input.value == "" ? "" : `«${input.value}»`;
+    };
 
-  //   searchInput.addEventListener("input", () => {
-  //     search(searchInput, servesTitles, servesItem);
-  //   });
+    searchInput.addEventListener("input", () => {
+      search(searchInput, servesTitles, servesItem);
+    });
 
   const switchAccordion = (accordion) => {
     if (accordion.classList.contains("accordion-disable")) {
