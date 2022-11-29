@@ -440,6 +440,10 @@ a {
   transition: 0.3s ease;
 }
 
+.banner-sale__btn:hover{
+  background: #fb7e01ba !important;
+}
+
 .serves__search {
   width: 100%;
   background: #fafcff;
@@ -973,6 +977,8 @@ a {
     display: block;
     font-family: inherit;
   }
+
+
   .banner-sale-text__substring {
     text-transform: uppercase;
   }
