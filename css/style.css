@@ -58,7 +58,17 @@ main {
   display: flex;
   flex-direction: column;
 }
-
+.sidebar{
+  display: flex;
+  padding-left: 30px;
+}
+.main__content{
+  display: flex;
+  flex-direction: column;
+}
+.main__container{
+  display: flex;
+}
 .section {
   max-width: 1014px;
 }
@@ -92,7 +102,6 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 100%;
 }
 
 .pricing__title {
@@ -117,9 +126,9 @@ a {
 }
 
 .accordion-disable{
-    height: 0;
-    opacity: 0;
-    transition: 0.5s ease;
+    max-height: 0 !important;
+    transition: 1s ease;
+    overflow: hidden;
 }
 
 .title__substring {
@@ -138,9 +147,12 @@ a {
   position: relative;
   margin-bottom: 10px;
 }
-.pricing-accordion__content{
-    transition: 0.3s ease;
+.accordion__content{
+  transition: 1s ease;
+  max-height: 682px;
+  overflow: hidden;
 }
+
 .pricing-accordion__title span{
     border-bottom: 1.3px dashed #000000;
 }
@@ -153,8 +165,9 @@ a {
   width: 20px;
   height: 12px;
   background-repeat: no-repeat;
-  top: 50%;
-  transform: rotate(-180deg) translateY(50%);
+  top: 28%;
+  right: 38%;
+  transform:  rotate(0deg) translateY(50%);
   transition: 0.3s ease;
 }
 
@@ -166,8 +179,9 @@ a {
     width: 20px;
     height: 12px;
     background-repeat: no-repeat;
-    top: 49%;
-    transform: rotate(0deg) translateY(50%);
+    top: 42%;
+    right: 38%;
+    transform: rotate(90deg) translateY(50%);
     transition: 0.3s ease;
   }
 
@@ -235,7 +249,9 @@ a {
   display: flex;
   flex-direction: column;
 }
-
+.pricing__banner--mobile{
+  display: none;
+}
 .pricing-banner__item {
   display: flex;
   flex-direction: column;
@@ -431,6 +447,15 @@ a {
   color: #ffffff;
   position: relative;
 }
+
+.serves-accordion__list{
+  transition: 1s ease;
+  max-height: 1320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .serve-accordion-orange__title{
     position: relative;
 }
@@ -440,11 +465,11 @@ a {
   display: flex;
   padding: 29px 31px 29px 31px;
   justify-content: space-between;
+  position: relative;
 }
 .serves-accordion__item:nth-child(even) {
   background-color: #faf9f9;
 }
-
 .serves-accordion-text__title {
   font-weight: 700;
   font-size: 22px;
@@ -503,6 +528,7 @@ a {
 }
 .serves-accordion-info__img:hover .serves-accordion-info__tooltip {
   display: flex;
+  
 }
 .serves-accordion-info__tooltip {
   display: none;
@@ -677,21 +703,23 @@ a {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    right: 5%;
+    right: 3%;
     width: 24px;
     height: 12px;
-    top: 40%;
-    transform: rotate(180deg) translateY(-50%);
+    top: 45%;
+    transform: rotate(0deg) translateY(-50%);
     transition: 0.3s ease;
 }
 .serve-accordion__title-disable{
     border-radius: 0;
 }
 .serve-accordion__title-disable::after{
-    transform:  translateY(-50%);
-    top: 50%;
+    transform: rotate(-90deg) translateY(-50%);
+    top: 40%;
+    right: 3%;
     transition: 0.3s ease;
 }
+
 .serve-accordion-orange__title::after{
     content: "";
     background-image: url(../img/grey-arrow.svg);
@@ -699,16 +727,17 @@ a {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    right: 5%;
+    right: 3%;
     width: 24px;
     height: 12px;
-    top: 40%;
-    transform: rotate(180deg) translateY(-50%);
+    top: 45%;
+    transform: rotate(0deg) translateY(-50%);
     transition: 0.3s ease;
 }
 .serve-accordion-orange__title-disable::after{
-    transform:  translateY(-50%);
-    top: 50%;
+  transform: rotate(-90deg) translateY(-50%);
+  top: 40%;
+  right: 3%;
 }
 
 .serves-accordion-orange__item {
@@ -772,7 +801,33 @@ a {
     display: none;
 }
 
-@media screen and (max-width: 900px) {
+.hide{
+  display: none;
+}
+
+@media screen and (max-width: 1500px) {
+  main {
+    padding: 23px 44px;
+    display: flex;
+    flex-direction: column;
+  }
+  .banner-sale{
+    background-size: auto 100%;
+    background-position: 10%;
+    padding: 12px 14px 14px 349px
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .sidebar{
+    display: none;
+  }
+  .accordion__content{
+    max-height: 960px;
+  }
+  .pricing__banner--mobile{
+    display: flex;
+  }
   main {
     padding: 10px 17px;
   }
@@ -796,11 +851,11 @@ a {
   }
   .pricing-accordion__title::after{
     right: -10%;
-    top: 25%;
+    top: 05%;
   }
   .pricing-accordion__title-disabled::after {
     right: -10%;
-    top: 15%;
+    top: 17%;
   }
   .accordion-item__title {
     font-size: 18px;
@@ -819,6 +874,9 @@ a {
   }
   .mobile-br {
     display: block;
+  }
+  .pricing__banner--mobile{
+    width: 100% ;
   }
   .pricing-banner__item {
     width: 100%;
@@ -950,5 +1008,81 @@ a {
   }
   .serves-accordion-orange__item-desktop{
     display: none;
+  }
+
+  .serves-accordion-info__img {
+    width: 16.01px;
+    height: 18px;
+    background-image: url(../img/info.svg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    cursor: pointer;
+  }
+  .serves-accordion-info__img:hover {
+    background-image: url(../img/info-active.png);
+  }
+  .serves-accordion-info__img:hover .serves-accordion-info__tooltip {
+    display: none;
+    
+  }
+  .serves-accordion-info__tooltip {
+    position: absolute;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 26px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    border-radius: 10px;
+    z-index: 100;
+    bottom: 136%;
+    right: 300px;
+  }
+  .serves-accordion-info__tooltip::after {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 12px;
+    background-image: url(../img/tooltip-arrow.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    bottom: -9%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .serves-accordion-info__tooltip{
+    display: none;
+  }
+  .serves-accordion-info__tooltip--mobile{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    top: 0;
+    left: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+  .serves-accordion-info__tooltip--mobile--active{
+    opacity: 1;
+    pointer-events: all;
+    transition: 0.3s ease;
+  }
+  .serves-accordion-tooltip__close{
+    font-size: 15px;
+    color: #fff;
+    position: absolute;
+    right: 10px;
+    top: 5px;
   }
 }
