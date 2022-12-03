@@ -36,17 +36,27 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-    const search = (input, listSearch, elementsSearch) => {
+    const search = (input, listSearch, hideList) => {
       let value = input.value.toLowerCase().trim();
       if (value !== "") {
           listSearch.forEach((listItem) => {
-            if (listItem.innerText.toLowerCase().search(value) == -1) {
-                listItem.parentNode.parentNode.classList.add("hide");
-            } else {
-                listItem.parentNode.parentNode.classList.remove("hide");
+            if(hideList.length == listSearch.length){
+              console.log(listSearch.length);
+              onsole.log(hideItems.length);
+              return;
             }
+            else{
+              if (listItem.innerText.toLowerCase().search(value) == -1) {
+                listItem.parentNode.parentNode.classList.add("hide");
+              }
+              else {
+                  listItem.parentNode.parentNode.classList.remove("hide");
+              }
+            }
+            
           });
-      } else {
+      }
+      else {
         listSearch.forEach((listItem) => {
             listItem.parentNode.parentNode.classList.remove("hide");
         });
@@ -55,7 +65,9 @@ window.addEventListener("DOMContentLoaded", function () {
     };
 
     searchInput.addEventListener("input", () => {
-      search(searchInput, servesTitles, servesItem);
+      let hideItems = document.querySelectorAll(".hide");
+      search(searchInput, servesTitles, hideItems);
+      hideItems.length
     });
 
   const switchAccordion = (accordion) => {

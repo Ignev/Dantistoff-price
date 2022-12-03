@@ -635,6 +635,7 @@ a {
   margin-left: 19px;
   position: relative;
   margin-bottom: 5px;
+  white-space: nowrap;
 }
 .serves-accordion-tooltip__item:last-child {
   margin-left: 19px;
@@ -885,9 +886,6 @@ a {
 .hide{
   display: none;
 }
-.serves-accordion-info__tooltip--mobile{
-  display: none;
-}
 
 @media screen and (max-width: 1500px) {
   main {
@@ -1112,24 +1110,27 @@ a {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    position: relative;
+    position: static;
     cursor: pointer;
   }
   .serves-accordion-info__img:hover .serves-accordion-info__tooltip {
-    display: none;
+    display: block;
   }
   .serves-accordion-info__tooltip {
     position: absolute;
     background-color: #000;
     color: #fff;
-    padding: 10px 26px;
+    padding: 0;
     font-weight: 300;
     font-size: 14px;
     line-height: 21px;
     border-radius: 10px;
     z-index: 100;
-    bottom: 136%;
-    right: 300px;
+    bottom: 60px;
+    left: 10px;
+    width: calc(100% - 60px);
+
+    padding: 10px 20px;
   }
   .serves-accordion-info__tooltip::after {
     position: absolute;
@@ -1144,30 +1145,8 @@ a {
     left: 50%;
     transform: translateX(-50%);
   }
-  .serves-accordion-info__tooltip{
-    display: none;
-  }
-  .serves-accordion-info__tooltip--mobile{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    top: 0;
-    left: 0;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.3s ease;
-  }
-  .serves-accordion-info__tooltip--mobile--active{
-    opacity: 1;
-    pointer-events: all;
-    transition: 0.3s ease;
+  .serves-accordion-tooltip__item{
+    white-space: normal;
   }
   .serves-accordion-tooltip__close{
     font-size: 15px;
