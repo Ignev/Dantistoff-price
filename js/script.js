@@ -13,7 +13,9 @@ window.addEventListener("DOMContentLoaded", function () {
     tooltips = document.querySelectorAll(
       ".serves-accordion-info__tooltip--mobile"
     ),
-    serverClose = document.querySelectorAll(".serves-accordion-tooltip__close");
+    serverClose = document.querySelectorAll(".serves-accordion-tooltip__close"),
+    searchImg = document.querySelector(".search-btn__img"),
+    loader = document.querySelector(".loader");
   const openTooptop = (tooptip) => {
     tooptip.classList.add("serves-accordion-info__tooltip--mobile--active");
   };
@@ -30,45 +32,62 @@ window.addEventListener("DOMContentLoaded", function () {
   });
   tooltips.forEach((tooltip) => {
     serverClose.forEach((close) => {
-        close.addEventListener("click", () => {
+      close.addEventListener("click", () => {
         closeTooptop(tooltip);
       });
     });
   });
 
-    const search = (input, listSearch, hideList) => {
-      let value = input.value.toLowerCase().trim();
-      if (value !== "") {
-          listSearch.forEach((listItem) => {
-            if(hideList.length == listSearch.length){
-              console.log(listSearch.length);
-              onsole.log(hideItems.length);
-              return;
-            }
-            else{
-              if (listItem.innerText.toLowerCase().search(value) == -1) {
-                listItem.parentNode.parentNode.classList.add("hide");
-              }
-              else {
-                  listItem.parentNode.parentNode.classList.remove("hide");
-              }
-            }
-            
-          });
-      }
-      else {
-        listSearch.forEach((listItem) => {
-            listItem.parentNode.parentNode.classList.remove("hide");
-        });
-      }value
-      searchValue.innerText = input.value == "" ? "" : `«${input.value}»`;
-    };
+  // Search
 
-    searchInput.addEventListener("input", () => {
-      let hideItems = document.querySelectorAll(".hide");
-      search(searchInput, servesTitles, hideItems);
-      hideItems.length
-    });
+  const hideImg = (time) => {
+    searchImg.style.display = "none";
+    loader.classList.add("loader--active");
+    setTimeout(() => {
+      searchImg.style.display = "block";
+      loader.classList.remove("loader--active");
+    }, time);
+  };
+
+  const hideElement = (element) => {
+    element.classList.add("hide");
+  };
+
+  const showElement = (element) => {
+    element.classList.remove("hide");
+  };
+
+  const searchElement = (listItem, value) => {
+    if (listItem.innerText.toLowerCase().search(value) == -1) {
+      hideElement(listItem.parentNode.parentNode);
+    } else {
+      showElement(listItem.parentNode.parentNode);
+    }
+  };
+
+  const search = (input, listSearch, hideList, time) => {
+    let value = input.value.toLowerCase().trim();
+    hideImg(time);
+    setTimeout(() => {
+      if (value !== "") {
+        listSearch.forEach((listItem) => {
+          searchElement(listItem, value);
+        });
+      } else {
+        listSearch.forEach((listItem) => {
+          listItem.parentNode.parentNode.classList.remove("hide");
+        });
+      }
+      value;
+      searchValue.innerText = input.value == "" ? "" : `«${input.value}»`;
+    }, time);
+  };
+
+  searchInput.addEventListener("input", () => {
+    let hideItems = document.querySelectorAll(".hide");
+    search(searchInput, servesTitles, hideItems, 300);
+    hideItems.length;
+  });
 
   const switchAccordion = (accordion) => {
     if (accordion.classList.contains("accordion-disable")) {
