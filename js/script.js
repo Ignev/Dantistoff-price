@@ -69,15 +69,40 @@ window.addEventListener("DOMContentLoaded", function () {
     let value = input.value.toLowerCase().trim();
     hideImg(time);
     setTimeout(() => {
-      if (value !== "" && hideList.length != listSearch.length) {
-        listSearch.forEach((listItem) => {
-          searchElement(listItem, value);
-        });
-      } else {
-        listSearch.forEach((listItem) => {
-          listItem.parentNode.parentNode.classList.remove("hide");
-          listItem.innerHTML = listItem.innerText;
-        });
+        if (value !== "") {
+          if(hideList.length === listSearch.length){
+            servesAccordionList[0].classList.add("accordion-disable");
+            serveAccordionTitle[0].classList.add("serve-accordion__title-disable");
+            servesAccordionList[1].classList.add("accordion-disable");
+            serveAccordionTitle[2].classList.add(
+              "serve-accordion-orange__title-disable"
+            );
+          }
+          else{
+            servesAccordionList[0].classList.remove("accordion-disable");
+            serveAccordionTitle[0].classList.remove(
+              "serve-accordion__title-disable"
+            );
+            servesAccordionList[1].classList.remove("accordion-disable");
+            serveAccordionTitle[2].classList.remove(
+              "serve-accordion-orange__title-disable"
+            );
+          }
+          listSearch.forEach((listItem) => {
+            searchElement(listItem, value);
+          });
+        } else {
+          servesAccordionList[0].classList.remove("accordion-disable");
+            serveAccordionTitle[0].classList.remove(
+              "serve-accordion__title-disable"
+            );
+            servesAccordionList[1].classList.remove("accordion-disable");
+            serveAccordionTitle[2].classList.remove(
+              "serve-accordion-orange__title-disable"
+            );
+          listSearch.forEach((listItem) => {
+            listItem.parentNode.parentNode.classList.remove("hide");
+          });
       }
       searchValue.innerText = input.value == "" ? "" : `«${input.value}»`;
     }, time);
