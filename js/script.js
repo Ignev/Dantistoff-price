@@ -9,111 +9,67 @@ window.addEventListener("DOMContentLoaded", function () {
     servesTitles = document.querySelectorAll(".serves-accordion-text__title"),
     servesItem = document.querySelectorAll(".serves-accordion__item"),
     searchValue = document.querySelector("#search__value"),
-    servesImg = document.querySelectorAll(".serves-accordion-info__img"),
-    tooltips = document.querySelectorAll(
-      ".serves-accordion-info__tooltip--mobile"
-    ),
     serverClose = document.querySelectorAll(".serves-accordion-tooltip__close"),
     searchImg = document.querySelector(".search-btn__img"),
-    loader = document.querySelector(".loader");
-  const openTooptop = (tooptip) => {
-    tooptip.classList.add("serves-accordion-info__tooltip--mobile--active");
-  };
-  const closeTooptop = (tooptip) => {
-    tooptip.classList.remove("serves-accordion-info__tooltip--mobile--active");
-  };
-  tooltips.forEach((tooltip) => {
-    servesImg.forEach((img) => {
-      img.addEventListener("click", () => {
-        console.log(+img.dataset.number);
-        openTooptop(tooltips[+img.dataset.number]);
-      });
-    });
-  });
-  tooltips.forEach((tooltip) => {
-    serverClose.forEach((close) => {
-      close.addEventListener("click", () => {
-        closeTooptop(tooltip);
-      });
-    });
-  });
-
+    loader = document.querySelector(".loader"),
+    cross = document.querySelector(".search-btn__cross");
+  
   // Search
 
-  const hideImg = (time) => {
+  const search = (input, searchTitle) => {
+    let value = input.value.toLowerCase().trim();
     searchImg.style.display = "none";
-    loader.classList.add("loader--active");
+    loader.style.display = "block";
+    cross.style.display = "none";
     setTimeout(() => {
       searchImg.style.display = "block";
-      loader.classList.remove("loader--active");
-    }, time);
-  };
-
-  const hideElement = (element) => {
-    element.classList.add("hide");
-  };
-
-  const showElement = (element) => {
-    element.classList.remove("hide");
-  };
-
-  const searchElement = (listItem, value) => {
-    if (listItem.innerText.toLowerCase().search(value) == -1) {
-      hideElement(listItem.parentNode.parentNode);
-    } else {
-      showElement(listItem.parentNode.parentNode);
-    }
-  };
-
-  const search = (input, listSearch, hideList, time) => {
-    let value = input.value.toLowerCase().trim();
-    hideImg(time);
-    setTimeout(() => {
-        if (value !== "") {
-          if(hideList.length === listSearch.length){
-            servesAccordionList[0].classList.add("accordion-disable");
-            serveAccordionTitle[0].classList.add("serve-accordion__title-disable");
-            servesAccordionList[1].classList.add("accordion-disable");
-            serveAccordionTitle[2].classList.add(
-              "serve-accordion-orange__title-disable"
-            );
+      loader.style.display = "none";
+      if (value != "") {
+        searchImg.style.display = "none";
+        cross.style.display = "block";
+        searchTitle.forEach((title) => {
+          if (title.innerText.toLowerCase().search(value) == -1) {
+            title.parentNode.parentNode.classList.add("hide");
+            servesAccordionList.forEach((accordionList) => {
+              if (
+                accordionList.querySelectorAll("li").length ==
+                accordionList.querySelectorAll(".hide").length
+              ) {
+                accordionList.parentNode.style.display = "none";
+              } else {
+                accordionList.parentNode.style.display = "block";
+              }
+            });
+          } else {
+            title.parentNode.parentNode.classList.remove("hide");
           }
-          else{
-            servesAccordionList[0].classList.remove("accordion-disable");
-            serveAccordionTitle[0].classList.remove(
-              "serve-accordion__title-disable"
-            );
-            servesAccordionList[1].classList.remove("accordion-disable");
-            serveAccordionTitle[2].classList.remove(
-              "serve-accordion-orange__title-disable"
-            );
-          }
-          listSearch.forEach((listItem) => {
-            searchElement(listItem, value);
-          });
-        } else {
-          servesAccordionList[0].classList.remove("accordion-disable");
-            serveAccordionTitle[0].classList.remove(
-              "serve-accordion__title-disable"
-            );
-            servesAccordionList[1].classList.remove("accordion-disable");
-            serveAccordionTitle[2].classList.remove(
-              "serve-accordion-orange__title-disable"
-            );
-          listSearch.forEach((listItem) => {
-            listItem.parentNode.parentNode.classList.remove("hide");
-          });
+        });
+      } else {
+        cross.style.display = "none";
+        searchTitle.forEach((title) => {
+          title.parentNode.parentNode.classList.remove("hide");
+        });
+        servesAccordionList.forEach((accordionList) => {
+          accordionList.parentNode.style.display = "block";
+        });
       }
-      searchValue.innerText = input.value == "" ? "" : `«${input.value}»`;
-    }, time);
+    }, 500);
   };
 
   searchInput.addEventListener("input", () => {
-    let hideItems = document.querySelectorAll(".hide");
-    search(searchInput, servesTitles, hideItems, 300);
+    search(searchInput, servesTitles);
   });
 
-  const switchAccordion = (accordion) => {
+  searchBtn.addEventListener("click", () => {
+    if(searchInput.value != ""){
+      searchInput.value = "";
+      search(searchInput, servesTitles);
+    }
+  })
+
+  // Accordion List Switch
+
+  const switchAccordionList = (accordion) => {
     if (accordion.classList.contains("accordion-disable")) {
       accordion.classList.remove("accordion-disable");
     } else {
@@ -130,20 +86,20 @@ window.addEventListener("DOMContentLoaded", function () {
   };
 
   collapsBtn.addEventListener("click", function () {
-    switchAccordion(pricingAccordionContent);
+    switchAccordionList(pricingAccordionContent);
     switchArrow(pricingAccordionTitle, "pricing-accordion__title-disabled");
   });
 
   pricingAccordionTitle.addEventListener("click", function () {
-    switchAccordion(pricingAccordionContent);
+    switchAccordionList(pricingAccordionContent);
     switchArrow(pricingAccordionTitle, "pricing-accordion__title-disabled");
   });
   serveAccordionTitle[0].addEventListener("click", function () {
-    switchAccordion(servesAccordionList[0]);
+    switchAccordionList(servesAccordionList[0]);
     switchArrow(serveAccordionTitle[0], "serve-accordion__title-disable");
   });
   serveAccordionTitle[2].addEventListener("click", function () {
-    switchAccordion(servesAccordionList[1]);
+    switchAccordionList(servesAccordionList[1]);
     switchArrow(
       serveAccordionTitle[2],
       "serve-accordion-orange__title-disable"
