@@ -12,12 +12,13 @@ window.addEventListener("DOMContentLoaded", function () {
     serverClose = document.querySelectorAll(".serves-accordion-tooltip__close"),
     searchImg = document.querySelector(".search-btn__img"),
     loader = document.querySelector(".loader"),
-    cross = document.querySelector(".search-btn__cross");
-  
+    cross = document.querySelector(".search-btn__cross"),
+    searchRes = document.querySelector(".search__res");
+
   // Search
 
   const search = (input, searchTitle) => {
-    let value = input.value.toLowerCase().trim();
+    let value = input.value.trim();
     searchImg.style.display = "none";
     loader.style.display = "block";
     cross.style.display = "none";
@@ -25,10 +26,11 @@ window.addEventListener("DOMContentLoaded", function () {
       searchImg.style.display = "block";
       loader.style.display = "none";
       if (value != "") {
+        searchRes.style.display = "block";
         searchImg.style.display = "none";
         cross.style.display = "block";
         searchTitle.forEach((title) => {
-          if (title.innerText.toLowerCase().search(value) == -1) {
+          if (title.innerText.toLowerCase().search(value.toLowerCase()) == -1) {
             title.parentNode.parentNode.classList.add("hide");
             servesAccordionList.forEach((accordionList) => {
               if (
@@ -46,6 +48,7 @@ window.addEventListener("DOMContentLoaded", function () {
         });
       } else {
         cross.style.display = "none";
+        searchRes.style.display = "none";
         searchTitle.forEach((title) => {
           title.parentNode.parentNode.classList.remove("hide");
         });
@@ -54,6 +57,7 @@ window.addEventListener("DOMContentLoaded", function () {
         });
       }
     }, 500);
+    searchValue.innerHTML = `${value}`;
   };
 
   searchInput.addEventListener("input", () => {
@@ -61,11 +65,11 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
   searchBtn.addEventListener("click", () => {
-    if(searchInput.value != ""){
+    if (searchInput.value != "") {
       searchInput.value = "";
       search(searchInput, servesTitles);
     }
-  })
+  });
 
   // Accordion List Switch
 

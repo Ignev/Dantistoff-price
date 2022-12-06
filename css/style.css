@@ -151,7 +151,7 @@ a {
   margin-bottom: 10px;
 }
 .accordion__content{
-  transition: 1s ease;
+  transition: 0.5s ease;
   max-height: 1000px;
   overflow: hidden;
 }
@@ -169,7 +169,7 @@ a {
   height: 12px;
   background-repeat: no-repeat;
   top: 28%;
-  right: 38%;
+  left: 568px;
   transform:  rotate(0deg) translateY(50%);
   transition: 0.3s ease;
 }
@@ -183,7 +183,7 @@ a {
     height: 12px;
     background-repeat: no-repeat;
     top: 42%;
-    right: 38%;
+    left: 568px;
     transform: rotate(90deg) translateY(50%);
     transition: 0.3s ease;
   }
@@ -486,6 +486,7 @@ a {
   display: inline-block;
   max-width: 100%;
   overflow: hidden;
+  display: none;
 }
 
 .loader {
@@ -551,12 +552,11 @@ a {
 }
 
 .serves-accordion__list{
-  transition: 1s ease;
+  transition: 0.5s ease;
   display: flex;
   max-height: 1400px;
   flex-direction: column;
   overflow: hidden;
-  transition: 1s ease;
 }
 
 .serves-accordion-orange__list{
@@ -637,13 +637,19 @@ a {
 .serves-accordion-info__img:hover {
   background-image: url(../img/info-active.png);
 }
-.serves-accordion-info__pricing:hover{
+
+.serves-accordion-info__block{
+  display: flex;
+  align-items: center;
+}
+
+.serves-accordion-info__block:hover .serves-accordion-info__pricing{
   color: #000;
 }
-.serves-accordion-info__pricing:hover ~ .serves-accordion-info__img {
+.serves-accordion-info__block:hover .serves-accordion-info__img {
   background-image: url(../img/info-active.png);
 }
-.serves-accordion-info__img:hover .serves-accordion-info__tooltip {
+.serves-accordion-info__block:hover .serves-accordion-info__tooltip {
   display: flex;
   
 }
@@ -975,12 +981,12 @@ a {
     margin-bottom: 15px;
   }
   .pricing-accordion__title::after{
-    right: -10%;
-    top: 05%;
+    left: 410px;
+    top: 20%;
   }
   .pricing-accordion__title-disabled::after {
-    right: -10%;
-    top: 17%;
+    left: 410px;
+    top: 35%;
   }
   .accordion-item__title {
     font-size: 18px;
@@ -1200,5 +1206,15 @@ a {
   }
   .serves__accordion{
     margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .pricing-accordion__title::after{
+    left: 295px;
+    top: 10%;
+  }
+  .pricing-accordion__title-disabled::after {
+    left: 295px;
+    top: 22%;
   }
 }
